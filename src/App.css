@@ -1,0 +1,22 @@
+.status {
+  margin-bottom: 10px;
+}
+
+.btn-current-move {
+  box-shadow: inset 0px 0px 5px 20px rgb(187 189 35 / 20%);
+  color: #292401;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.game-info-header {
+  display: flex;
+  justify-content: space-between;
+} 
