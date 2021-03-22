@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Board from './Board';
 import Moves from './Moves';
 
@@ -13,6 +13,20 @@ function App() {
     step: currentStep
   }]);
   const [order, setOrder] = useState('asc');
+  const [data, setData] = useState('Начало');
+
+  const testFetch = async () => {
+    setData('Получение данных...');
+    const str = [1,2,3].includes(2) ? [1,2,3] : [];
+    const data = await new Promise((resolve) => setTimeout(() => {
+      resolve(`Получены данные: ${str}  через 2 секунды`);
+    }, 2000));
+    setData(data);
+  };
+
+  useEffect(() => {
+    testFetch();
+  }, []);
 
   let current = history.find(({step}) => step === currentStep);
   const {winner, squares: winSquares} = calculateWinner(current.squares) || {};
@@ -76,7 +90,7 @@ function App() {
       </div>
       <div className="game-info">
         <div className="game-info-header">
-          <div>{status}</div>
+          <div>{status} {data}</div>
           <button className="btn-sorting"
                   onClick={sort}
                   style={{visibility: (history.length > 1 ? 'visible' : 'hidden')}} >
